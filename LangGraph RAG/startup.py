@@ -28,8 +28,6 @@ def install_requirements():
         "streamlit",
         "streamlit-extras",
         "typing-extensions",
-        "langchain_huggingface",
-        "sentence-transformers",
         "pypdf",
         "docx2txt"
     ]

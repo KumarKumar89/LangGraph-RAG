@@ -1,4 +1,3 @@
-from langchain_huggingface import HuggingFaceEmbeddings
 import streamlit as st
 import os
 import tempfile
@@ -18,7 +17,7 @@ from langgraph.graph import START, StateGraph
 from langchain_core.prompts import PromptTemplate
 
 # Gemini integration
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
 # ChromaDB integration
 from langchain_chroma import Chroma
@@ -159,9 +158,10 @@ class RAGPipeline:
             temperature=0.3
         )
         
-        # Initialize embeddings
-        self.embeddings = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        # Initialize Gemini embeddings using a supported model for the current API
+        self.embeddings = GoogleGenerativeAIEmbeddings(
+            model="models/gemini-embedding-001",
+            google_api_key=google_api_key
         )
         
         # Initialize ChromaDB vector store
